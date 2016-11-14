@@ -25,7 +25,7 @@ class Hybrid_Providers_Naver extends Hybrid_Provider_Model_OAuth2
       parent::initialize();
 
 		// Provider API end-points
-      $this->api->api_base_url  = "https://apis.naver.com/nidlogin/nid";
+      $this->api->api_base_url  = "https://apis.naver.com/nidlogin/";
       $this->api->authorize_url = "https://nid.naver.com/oauth2.0/authorize";
       $this->api->token_url     = "https://nid.naver.com/oauth2.0/token";
   }
