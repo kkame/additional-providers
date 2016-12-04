@@ -1,9 +1,4 @@
 {
   
-  "name": "kkame/additional-providers",
-  "autoload":{
-    "classmap":[
-        "Providers/"
-      ]
-  }
+  "name": "kkame/additional-providers"
 }
