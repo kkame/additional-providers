@@ -1,4 +1,29 @@
 {
   
-  "name": "kkame/additional-providers"
+  "name": "kkame/additional-providers",
+  
+	"require": {
+		"hybridauth/hybridauth": "^2.6"
+	},
+  
+	"scripts": {
+
+		"pre-install-cmd": [
+			"php -r \"unlink('vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Naver.php');\"",
+			"php -r \"unlink('vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Kakao.php');\""
+		],
+		"pre-update-cmd": [
+			"php -r \"unlink('vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Naver.php');\"",
+			"php -r \"unlink('vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Kakao.php');\""
+		],
+		"post-install-cmd": [
+			"php -r \"copy('vendor/kkame/additional-providers/Providers/Naver.php', 'vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Naver.php');\"",
+			"php -r \"copy('vendor/kkame/additional-providers/Providers/Kakao.php', 'vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Kakao.php');\""
+		],
+		"post-update-cmd": [
+			"php -r \"copy('vendor/kkame/additional-providers/Providers/Naver.php', 'vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Naver.php');\"",
+			"php -r \"copy('vendor/kkame/additional-providers/Providers/Kakao.php', 'vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Kakao.php');\""
+		]
+	}
+
 }
