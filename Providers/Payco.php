@@ -9,18 +9,9 @@ class Hybrid_Providers_Payco extends Hybrid_Provider_Model_OAuth2
     {
         parent::initialize();
 
-        // Provider API end-points
-        if(false){ // 개발용
-            $this->api->api_base_url = "https://dev-apis.krp.toastoven.net";
-            $this->api->authorize_url = "https://demo-id.payco.com/oauth2.0/authorize";
-            $this->api->token_url = "https://demo-id.payco.com/oauth2.0/token";
-        }
-
-        if(true){ // 공식 API
-            $this->api->api_base_url = "https://apis3.krp.toastoven.net";
-            $this->api->authorize_url = "https://id.payco.com/oauth2.0/authorize";
-            $this->api->token_url = "https://id.payco.com/oauth2.0/token";
-        }
+        $this->api->api_base_url = "https://apis3.krp.toastoven.net";
+        $this->api->authorize_url = "https://id.payco.com/oauth2.0/authorize";
+        $this->api->token_url = "https://id.payco.com/oauth2.0/token";
     }
 
     /**
@@ -96,7 +87,7 @@ class Hybrid_Providers_Payco extends Hybrid_Provider_Model_OAuth2
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");  // 이건 아래 옵션 때문에 필요 없긴 하다.
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POST, 1);
 
         $response = curl_exec($ch);
@@ -124,8 +115,6 @@ class Hybrid_Providers_Payco extends Hybrid_Provider_Model_OAuth2
 
     private function authenticate($code)
     {
-        $token = Hybrid_Auth::storage()->get("payco_state_token");
-
         $params = array(
             "grant_type" => "authorization_code",
             "client_id" => $this->api->client_id,
