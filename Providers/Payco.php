@@ -22,12 +22,13 @@ class Hybrid_Providers_Payco extends Hybrid_Provider_Model_OAuth2
         $token = $this->generate_state_token();
         Hybrid_Auth::storage()->set("payco_state_token", $token);
 
-        $parameters = array(
+        $parameters = [
             "response_type" => "code",
             "client_id" => $this->api->client_id,
             "redirect_uri" => $this->api->redirect_uri,
             "state" => $token,
-        );
+            "serviceProviderCode" => "FRIENDS",
+        ];
 
         Hybrid_Auth::redirect($this->api->authorizeUrl($parameters));
     }
